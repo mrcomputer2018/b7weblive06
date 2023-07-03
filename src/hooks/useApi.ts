@@ -7,18 +7,34 @@ const api = axios.create({
 // criando hook
 export const useApi = () => ({ 
     validateToken: async (token: string) => {
-        const response = await api.post('validate', { token });
 
-        return response.data;
+        // resposta fake
+        return {
+            user: { id: 3, name:'John', email:'john@john.com'},
+    
+        }
+
+        //const response = await api.post('validate', { token });
+
+        //return response.data;
     },
     signIn: async (email: string, password: string) => {
-        const response = await api.post('/users/login', { email: email, password: password });
+       // resposta fake
+        return {
+            user: { id: 3, name:'John', email:'john@john.com'},
+            token: '123456789',
+        }
 
-        return response.data;
+        //const response = await api.post('/users/login', { email: email, password: password });
+
+        //return response.data;
     },
     logout : async () => {
-        const response = await api.post('/users/logout');
+         // resposta fake
+         return { status: true }
+        
+        // const response = await api.post('/users/logout');
 
-        return response.data;
+        //return response.data;
     }
 });

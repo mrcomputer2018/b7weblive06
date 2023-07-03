@@ -1,11 +1,30 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
+    // chamando contexto
+    const auth = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
+        // verificando se email e senha estao preenchidos
+        if (email && password) {
+            const isLogged = await auth.signIn(email, password);
 
+            // se esta logado
+            if (isLogged) { 
+                navigate('/');
+                return;
+            }
+
+            return alert('Email ou senha inválidos');
+        }
+
+        alert('Email e senha são obigatorios.');
     }
 
     return (
@@ -27,7 +46,7 @@ export const Login = () => {
             />
             
             <button
-                onAuxClick={ handleLogin }>
+                onClick={ handleLogin }>
                 Login
             </button>
         </div>

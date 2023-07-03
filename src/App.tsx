@@ -1,11 +1,21 @@
-import React from 'react';
+import { useContext } from 'react';
 import './App.css';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { Private } from './pages/Private';
 import { Home } from './pages/Home';
 import { RequireAuth } from './contexts/RequireAuth';
+import { AuthContext } from './contexts/AuthContext';
 
 function App() {
+
+    const auth = useContext(AuthContext);
+    const navigate = useNavigate();
+   
+    const handleLogOut = async () => { 
+        await auth.signOut();
+        navigate('/');
+    }
+
     return (
         <div className="App">
             <header>
@@ -13,6 +23,7 @@ function App() {
                 <nav>
                     <Link to="/" >Home</Link>
                     <Link to="/private" >Private</Link>
+                    { auth.user &&  <button onClick={handleLogOut}>Sair</button>}
                 </nav>
             </header>
             <hr />

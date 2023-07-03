@@ -4,6 +4,10 @@ export const Login = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
 
+    const handleLogin = () => {
+
+    }
+
     return (
         <div>
             <h2> Pagina Privada</h2>
@@ -22,7 +26,10 @@ export const Login = () => {
                 onChange={ (text) => setPassword(text.target.value) }
             />
             
-            <button>Fazer Login</button>
+            <button
+                onAuxClick={ handleLogin }>
+                Login
+            </button>
         </div>
     );
 }

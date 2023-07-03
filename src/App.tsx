@@ -3,6 +3,7 @@ import './App.css';
 import { Route, Routes, Link } from 'react-router-dom';
 import { Private } from './pages/Private';
 import { Home } from './pages/Home';
+import { RequireAuth } from './contexts/RequireAuth';
 
 function App() {
     return (
@@ -16,8 +17,17 @@ function App() {
             </header>
             <hr />
             <Routes>
-                <Route path="/" element={ <Home/> }/>
-                <Route path="/private" element={ <Private/> }/>
+
+                <Route 
+                    path="/" 
+                    element={ <Home/> }/>
+
+                <Route 
+                    path="/private" 
+                    element={   <RequireAuth>
+                                    <Private />
+                                </RequireAuth> }/>
+
             </Routes>
         </div>
     );

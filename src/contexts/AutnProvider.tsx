@@ -41,11 +41,10 @@ export const AutnProvider = ( { children }: { children : JSX.Element } ) => {
     }
     
     const signOut = async () => {
-        await api.logout();
-
         // limpando user
         setUser(null);
         setToken('');
+        await api.logout();
     }
 
     const setToken = async (token: string) => {

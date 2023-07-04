@@ -35,9 +35,9 @@ function App() {
 
                 <Route 
                     path="/private" 
-                    element={   <RequireAuth>
-                                    <Private />
-                                </RequireAuth> }/>
+                    element={ <RequireAuth>
+                                <Private />
+                            </RequireAuth> }/>
 
             </Routes>
         </div>
